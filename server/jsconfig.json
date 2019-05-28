@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "scripthost",
+            "es2015"
+        ]
+    }
+}

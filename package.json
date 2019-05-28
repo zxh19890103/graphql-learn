@@ -1,0 +1,43 @@
+{
+  "name": "graphql-learn",
+  "version": "1.0.0",
+  "description": "a repo for learning graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "node ./scripts/client",
+    "server": "cd ./server && nodemon ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxh19890103/graphql-learn.git"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "relay"
+  ],
+  "author": "Singhi John",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zxh19890103/graphql-learn/issues"
+  },
+  "homepage": "https://github.com/zxh19890103/graphql-learn#readme",
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.0",
+    "apollo-client": "^2.6.0",
+    "apollo-link-http": "^1.5.14",
+    "apollo-server": "^2.5.0",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "devDependencies": {
+    "@playlyfe/gql": "^2.6.1",
+    "chalk": "^2.4.2",
+    "clean-webpack-plugin": "^2.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.32.2",
+    "webpack-dev-server": "^3.4.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
