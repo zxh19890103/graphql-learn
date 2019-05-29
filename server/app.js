@@ -5,15 +5,17 @@ const {
 
 const typeDefs = gql`
     type Query {
-        hello: String,
-        world: String
+        hello: String!,
+        increment(input: Int!): Int
     }
 `
 
 const resolvers = {
     Query: {
         hello: () => 'Hello',
-        world: () => 'World'
+        increment: (parent, { input }, context, info) => {
+            return input + 1
+        }
     }
 }
 

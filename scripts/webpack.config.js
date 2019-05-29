@@ -8,7 +8,22 @@ const clientCfg = require('./client.config.json')
 module.exports = {
     mode: 'development',
     entry: {
-        app: './client/app.js'
+        app: './client'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            configFile: path.resolve('./client/tsconfig.json')
+                        }
+                    }
+                ]
+            }
+        ]
     },
     output: {
         path: path.resolve('./dist'),
