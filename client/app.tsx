@@ -6,8 +6,11 @@ import { onError } from 'apollo-link-error'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { BrowserRouter } from "react-router-dom"
 
 import { Query, ApolloProvider } from 'react-apollo'
+
+import { Match } from "./routes"
 
 const httpLink = new HttpLink({
     uri: 'http://0.0.0.0:3000'
@@ -37,16 +40,11 @@ const query = gql`
 `
 
 const App = () => {
-    return <ApolloProvider client = {client}>
-        <Query fetchPolicy="network-only" query={query}>
-            {({ loading, error, data }) => {
-                if (loading) return <em>Loading...</em>
-                if (error) return <em>Error</em>
-                const { increment, person } = data
-                return <h3>Hello, My name is {person.name} and I'm {person.age}</h3>
-            }}
-        </Query>
-    </ApolloProvider>
+    return <BrowserRouter>
+        <ApolloProvider client = {client}>
+            <Match/>
+        </ApolloProvider>
+    </BrowserRouter>
 }
 
 ReactDOM.render(<App/>, document.querySelector('#App'))

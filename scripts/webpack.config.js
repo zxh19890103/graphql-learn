@@ -10,10 +10,18 @@ module.exports = {
     entry: {
         app: './client'
     },
+    resolve: {
+        extensions: [".ts",".js",".tsx"]
+    },
+    output: {
+        path: path.resolve('./dist'),
+        filename: '[name].js',
+        publicPath: "/"
+    },    
     module: {
         rules: [
             {
-                test: /\.tsx?/,
+                test: /\.tsx?$/,
                 use: [
                     {
                         loader: 'ts-loader',
@@ -24,10 +32,6 @@ module.exports = {
                 ]
             }
         ]
-    },
-    output: {
-        path: path.resolve('./dist'),
-        filename: '[name].js'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
