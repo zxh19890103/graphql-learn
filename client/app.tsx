@@ -4,8 +4,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM, { render } from 'react-dom'
 import { BrowserRouter } from "react-router-dom"
 
 import { Query, ApolloProvider } from 'react-apollo'
@@ -39,12 +39,39 @@ const query = gql`
     }
 `
 
+const MyContext = React.createContext<{
+    name: string
+    setName: (update: string) => void
+}>(null)
+
+const providerValue = {
+    name: "Singhi",
+    setName: (update: string) => {
+        providerValue.name = update
+        console.log('ppp')
+    }
+}
+
+class ComsumerThing extends React.Component {
+    static contextType = MyContext
+    render () {
+        console.log(this.context)
+        return <MyContext.Consumer>
+            {
+                ({ name, setName }) => {
+                return <a href="javascript:;" onClick={() => {
+                            setName("Singhi + 90")
+                        }}>{name}</a>
+                }
+            }
+        </MyContext.Consumer>
+    }
+}
+
 const App = () => {
-    return <BrowserRouter>
-        <ApolloProvider client = {client}>
-            <Match/>
-        </ApolloProvider>
-    </BrowserRouter>
+    return <MyContext.Provider value={providerValue}>
+        <ComsumerThing/>
+    </MyContext.Provider>
 }
 
 ReactDOM.render(<App/>, document.querySelector('#App'))
